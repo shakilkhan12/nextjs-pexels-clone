@@ -65,7 +65,7 @@ const Model = () => {
           
         </div>
           <div className='mt-9'>
-          <Image className='mx-auto rounded-sm' src={imageDetails?.webformatURL} alt='image details' width={imageDetails?.webformatWidth} height={imageDetails?.webformatHeight}/>
+          <Image className='mx-auto' src={imageDetails?.webformatURL} alt='image details' width={imageDetails?.webformatWidth} height={imageDetails?.webformatHeight}/>
           </div>
           
         </div>}
