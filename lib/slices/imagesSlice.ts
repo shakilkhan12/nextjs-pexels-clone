@@ -12,7 +12,8 @@ export interface ImageType {
   searchType: string,
   image_type: string,
   orientation: string,
-  colors: string[]
+  colors: string[],
+  searchActive: boolean
 }
 
 const initialState: ImageType = {
@@ -26,7 +27,8 @@ const initialState: ImageType = {
   searchType: 'images',
   image_type: 'all',
   orientation: 'all',
-  colors: []
+  colors: [],
+  searchActive: false
 }
 
 export const imageSlice = createSlice({
@@ -76,10 +78,13 @@ export const imageSlice = createSlice({
     },
     removeColor: (state, {payload}) => {
       state.colors = state.colors.filter(c => c !== payload)
+    },
+    setSearchActive: (state, {payload}) => {
+      state.searchActive = payload;
     }
 }})
 
 // Action creators are generated for each case reducer function
-export const { setImages, setVideos, toggleModel, toggleVideoModal, setImageDetails,setVideoDetails, setLoader, setSearchType, setImageType, setOrientation, selectColor, removeColor } = imageSlice.actions
+export const { setImages, setVideos, toggleModel, toggleVideoModal, setImageDetails,setVideoDetails, setLoader, setSearchType, setImageType, setOrientation, selectColor, removeColor, setSearchActive } = imageSlice.actions
 
 export default imageSlice.reducer

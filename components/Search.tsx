@@ -1,7 +1,7 @@
 'use client'
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { setImages, setLoader, setSearchType, setVideos } from "@/lib/slices/imagesSlice"
+import { setImages, setLoader, setSearchActive, setSearchType, setVideos } from "@/lib/slices/imagesSlice"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { IoIosSearch } from "react-icons/io"
@@ -43,11 +43,13 @@ const Search = () => {
     if (e.key === 'Enter') {
       if(searchType === 'images') {
         searchImages(query);
+        dispatch(setSearchActive(true))
       } else {
         dispatch(setLoader())
         try {    
           const {data}=await axios.get(`https://pixabay.com/api/videos/?key=${process.env.NEXT_PUBLIC_KEY}&q=${query}`)
           dispatch(setLoader())
+          
           if(data.hits){
            dispatch(setVideos(data.hits))
            dispatch(setImages([]))
